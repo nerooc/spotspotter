@@ -1,0 +1,35 @@
+{
+	"name": "spotspotter",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev -p 8080",
+		"build": "next build",
+		"start": "next start -p 8080",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@azure/msal-browser": "^2.32.2",
+		"@azure/msal-react": "^1.5.2",
+		"axios": "^1.2.2",
+		"leaflet": "^1.8.0",
+		"material-icons": "^1.13.1",
+		"next": "12.3.0",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-leaflet": "^4.0.2",
+		"styled-components": "^5.3.6",
+		"unstated-next": "^1.1.0"
+	},
+	"devDependencies": {
+		"@types/leaflet": "^1.7.11",
+		"@types/node": "18.7.16",
+		"@types/react": "18.0.18",
+		"@types/react-dom": "18.0.6",
+		"@types/react-leaflet": "^2.8.2",
+		"@types/styled-components": "^5.1.26",
+		"eslint": "8.23.0",
+		"eslint-config-next": "12.3.0",
+		"typescript": "4.8.3"
+	}
+}
