@@ -1,5 +1,5 @@
 import { Controller, Get, UnprocessableEntityException } from '@nestjs/common';
-import { LocationDto } from './Location.dto';
+import { LocationDto } from './location.dto';
 import { InjectModel } from '@nestjs/azure-database';
 import { Location } from './location.entity';
 import { Body, Delete, HttpCode, Param, Post } from '@nestjs/common/decorators';
