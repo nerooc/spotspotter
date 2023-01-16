@@ -1,4 +1,11 @@
+import { msalConfig } from '@/azure/authConfig';
+import { ProtectedRoute } from '@/components/auth';
+import { CoordinatesProvider } from '@/containers';
+import { Layout } from '@/layouts';
+import { PublicClientApplication } from '@azure/msal-browser';
+import { MsalProvider } from '@azure/msal-react';
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
@@ -34,10 +41,21 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+	const instance = new PublicClientApplication(msalConfig);
+	const router = useRouter();
+
 	return (
 		<>
-			<GlobalStyles />
-			<Component {...pageProps} />
+			<ProtectedRoute router={router}>
+				<MsalProvider instance={instance}>
+					<CoordinatesProvider>
+						<GlobalStyles />
+						<Layout>
+							<Component {...pageProps} />
+						</Layout>
+					</CoordinatesProvider>
+				</MsalProvider>
+			</ProtectedRoute>
 		</>
 	);
 }

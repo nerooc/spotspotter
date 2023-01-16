@@ -4,6 +4,8 @@ import { TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import styles from './Map.module.css';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useCoordinates } from '@/containers';
 
 const { MapContainer } = ReactLeaflet;
 
@@ -14,6 +16,15 @@ interface MapProps {
 
 const MapInner = ({ position }: { position: LatLngTuple }) => {
 	const map = useMap();
+	const router = useRouter();
+	const { setCoordinates } = useCoordinates();
+	ReactLeaflet.useMapEvents({
+		click(event) {
+			const { lat, lng } = event.latlng;
+			setCoordinates({ lat, lng });
+			router.push(`/app/create`);
+		},
+	});
 
 	useEffect(() => {
 		map.setView(position);
@@ -27,7 +38,7 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 			/>
 			<Marker
 				position={position}
-				icon={new Icon({ iconUrl: './images/Marker.png', iconSize: [25, 41], iconAnchor: [12, 41] })}
+				icon={new Icon({ iconUrl: '/images/Marker.png', iconSize: [25, 35], iconAnchor: [12, 41] })}
 			>
 				<Popup>
 					A pretty CSS3 popup. <br /> Easily customizable.
@@ -38,17 +49,22 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 };
 
 const Map = ({}: MapProps) => {
-	const [position, setPosition] = useState<LatLngTuple>([50.13923672606203, 19.87726859468795]);
+	const router = useRouter();
+	const { coordinates } = useCoordinates();
+	let { lat, lng } = coordinates;
+
+	console.log(coordinates);
+
+	if (!lng || !lat) {
+		lat = 18.87726859468795;
+		lng = 50.13923672606203;
+	}
+
+	const position: LatLngTuple = [lat, lng];
 
 	return (
 		<>
-			<button
-				style={{ position: 'absolute', top: '10px', right: '10px', zIndex: '9999' }}
-				onClick={() => setPosition([50.13923672606203, 18.87726859468795])}
-			>
-				Test
-			</button>
-			<MapContainer className={styles.map} center={position} zoom={90} scrollWheelZoom={false}>
+			<MapContainer zoomAnimation={true} className={styles.map} center={position} zoom={16} scrollWheelZoom={true}>
 				<MapInner position={position} />
 			</MapContainer>
 		</>
