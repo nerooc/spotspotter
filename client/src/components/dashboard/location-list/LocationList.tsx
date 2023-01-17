@@ -21,7 +21,9 @@ export const LocationList = (props: LocationList) => {
 	}
 
 	const LocationListContainer = styled.ul`
-		height: 90%;
+		height: 80%;
+		width: 100%;
+		margin-top: 20px;
 		overflow-y: auto;
 	`;
 

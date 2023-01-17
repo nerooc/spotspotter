@@ -38,7 +38,7 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 			/>
 			<Marker
 				position={position}
-				icon={new Icon({ iconUrl: '/images/Marker.png', iconSize: [25, 35], iconAnchor: [12, 41] })}
+				icon={new Icon({ iconUrl: '/images/Marker.png', iconSize: [30, 50], iconAnchor: [12, 41] })}
 			>
 				<Popup>
 					A pretty CSS3 popup. <br /> Easily customizable.

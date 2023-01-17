@@ -1,39 +1,87 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const LocationContainer = styled.div`
-	color: black;
-`;
-
-const LocationAddress = styled.div``;
+import { useRouter } from 'next/router';
 
 const CreateLocationPage = () => {
+	const router = useRouter();
+
 	return (
-		<LocationContainer>
-			Create new location
-			<LocationAddress>
-				<form>
+		<Container>
+			<ReturnButton onClick={() => router.push('/app')}>&lt; Back</ReturnButton>
+			<LocationContainer>
+				<h1>Create new location</h1>
+				<LocationForm>
 					<label htmlFor="title">Title</label>
-					<input id="title" type="text" />
+					<LocationInput id="title" type="text" />
 
 					<label htmlFor="description">Description</label>
-					<textarea id="description" />
+					<LocationTextArea id="description" style={{ resize: 'none' }} />
 
 					<label htmlFor="country">Country</label>
-					<input id="country" type="text" />
+					<LocationInput id="country" type="text" />
 
 					<label htmlFor="city">City</label>
-					<input id="city" type="text" />
+					<LocationInput id="city" type="text" />
 
 					<label htmlFor="street">Street</label>
-					<input id="street" type="text" />
+					<LocationInput id="street" type="text" />
 
 					<label htmlFor="number">Number</label>
-					<input id="number" type="text" />
-				</form>
-			</LocationAddress>
-		</LocationContainer>
+					<LocationInput id="number" type="text" />
+
+					<SubmitButton type="submit">Submit</SubmitButton>
+				</LocationForm>
+			</LocationContainer>
+		</Container>
 	);
 };
 
 export default CreateLocationPage;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	width: 100%;
+`;
+
+const ReturnButton = styled.button`
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	margin-bottom: 20px;
+`;
+
+const LocationContainer = styled.div`
+	color: black;
+	width: 100%;
+`;
+
+const LocationForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	margin-top: 20px;
+`;
+
+const LocationInput = styled.input`
+	width: 100%;
+	height: 30px;
+`;
+
+const LocationTextArea = styled.textarea`
+	width: 100%;
+	height: 100px;
+`;
+
+const SubmitButton = styled.button`
+	height: 40px;
+	background-color: #34a853;
+	cursor: pointer;
+	border: none;
+	margin-top: 20px;
+
+	&:hover {
+		opacity: 0.8;
+	}
+`;

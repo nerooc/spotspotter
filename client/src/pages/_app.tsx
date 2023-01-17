@@ -5,11 +5,11 @@ import { Layout } from '@/layouts';
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
 
 	*,
 	*::after,
@@ -46,6 +46,16 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
+			<Head>
+				<title>Spotspotter</title>
+
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+				<link
+					href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+					rel="stylesheet"
+				/>
+			</Head>
 			<ProtectedRoute router={router}>
 				<MsalProvider instance={instance}>
 					<CoordinatesProvider>

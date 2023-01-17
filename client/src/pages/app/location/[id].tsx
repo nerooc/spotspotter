@@ -8,7 +8,11 @@ import styled from 'styled-components';
 type LocationPage = {};
 
 const LocationContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 	color: black;
+	width: 100%;
+	gap: 20px;
 `;
 
 const LocationTitle = styled.h3``;
@@ -16,6 +20,12 @@ const LocationTitle = styled.h3``;
 const LocationDescription = styled.p``;
 
 const LocationAddress = styled.div``;
+
+const ReturnButton = styled.button`
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+`;
 
 const LocationPage = (props: LocationPage) => {
 	const router = useRouter();
@@ -37,9 +47,10 @@ const LocationPage = (props: LocationPage) => {
 
 	return (
 		<LocationContainer>
-			<button onClick={() => router.push('/app')}>Test</button>
+			<ReturnButton onClick={() => router.push('/app')}>&lt; Back</ReturnButton>
+			<h1>Location</h1>
 			{location ? (
-				<>
+				<div>
 					<LocationTitle>{location.title}</LocationTitle>
 					<LocationDescription>{location.description}</LocationDescription>
 					<LocationAddress>
@@ -50,7 +61,7 @@ const LocationPage = (props: LocationPage) => {
 							{location.address.street} {location.address.number}
 						</p>
 					</LocationAddress>
-				</>
+				</div>
 			) : (
 				'No location'
 			)}
