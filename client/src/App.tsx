@@ -45,6 +45,7 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
 	const instance = new PublicClientApplication(msalConfig);
+
 	return (
 		// <ProtectedRoute router={router}>
 		<MsalProvider instance={instance}>

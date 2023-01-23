@@ -1,9 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { blobStorage } from '../azure';
 
 const CreateLocationPage = () => {
 	const history = useHistory();
+	const image = blobStorage.get('public/bmw_image.jpg');
 
 	return (
 		<Container>
@@ -31,6 +33,7 @@ const CreateLocationPage = () => {
 
 					<SubmitButton type="submit">Submit</SubmitButton>
 				</LocationForm>
+				<img src={image} alt="bmw" width="100%" style={{ padding: 40 }} />
 			</LocationContainer>
 		</Container>
 	);
@@ -53,8 +56,9 @@ const ReturnButton = styled.button`
 `;
 
 const LocationContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 	color: black;
-	width: 100%;
 `;
 
 const LocationForm = styled.form`

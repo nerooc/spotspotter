@@ -4,6 +4,7 @@ import { loginRequest } from '../azure/authConfig';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { appRoutes } from '../constants';
+import { blobStorage } from '../azure';
 
 type LoginProps = {};
 
@@ -38,6 +39,7 @@ const Login = (props: LoginProps) => {
 	const { instance } = useMsal();
 	const history = useHistory();
 	const isAuthenticated = useIsAuthenticated();
+	const logo = blobStorage.get('public/logo.svg');
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -56,7 +58,7 @@ const Login = (props: LoginProps) => {
 	return (
 		<PageContainer>
 			<LoginContainer>
-				<img src="./images/logo.svg" alt="logo" />
+				<img src={logo} alt="logo" />
 				{isAuthenticated ? <>LoggedIn</> : <LoginButton onClick={handleLogin}>Sign in with Microsoft AD</LoginButton>}
 			</LoginContainer>
 		</PageContainer>
