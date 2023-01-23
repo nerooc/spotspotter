@@ -7,15 +7,18 @@ Aplikacja dla fanów fotografii motoryzacyjnej (i nie tylko), która pozwala na 
 
 DEMO: [https://spotspotter.azurewebsites.net/](https://spotspotter.azurewebsites.net/)
 
+# Diagram architektury
+
 
 # Technologie
 
 Do stworzenia aplikacji serwerowej wykorzystany został framework `NestJS`. 
-Aplikacja frontendowa używa natomiast frameworka `NextJS`. W przypadku obu elementów jako główny język używany jest Typescript.
+Aplikacja frontendowa używa natomiast biblioteki `React`. Próba zabawy z frameworkiem `NextJS` zakończyły się niestety niepowodzeniem. 
+W przypadku obu elementów jako główny język używany jest Typescript.
 
 Aplikacja deployowana jest na chmurę Microsoft Azure przy pomocy Github Actions. 
 
-# Struktura katalogóww repozytorium
+# Struktura katalogów repozytorium
 
 ```bash
 ├── azure/ # zrzuty ekranu z konfiguracji Azure
@@ -31,16 +34,19 @@ Aplikacja deployowana jest na chmurę Microsoft Azure przy pomocy Github Actions
 │   │   ├── layouts/ # layouty aplikacji pozwalające na łatwe dodawanie nowych stron
 │   │   ├── pages/ # ekrany/podstrony aplikacji
 │   │   ├── styles/ # globalne style aplikacji
-│   │   └── types/ # typy wykorzystane w aplikacji 
+│   │   ├── types/ # typy wykorzystane w aplikacji
+│   │   └── App.tsx # punkt startowy aplikacji
 │   │
-│   └── # dodatkowe pliki konfiguracyjne NextJS, Typescript, eslint, babel
+│   └── # dodatkowe pliki konfiguracyjne React, Typescript
 │
 ├── src/ # kod zawierający część serwerową aplikacji
 │   ├── location/ # moduł dotyczący lokalizacji
 │   └── main.ts # moduł główny aplikacji serwerowej
 │
 ├── README.md # krótka dokumentacja projektu
-└── package.json # zależności części serwerowej
+├── package.json # zależności części serwerowej
+└── .github/workflows # pliki dot. pipeline'u
+
 ```
 
 # Interfejs aplikacji
@@ -48,6 +54,7 @@ Aplikacja deployowana jest na chmurę Microsoft Azure przy pomocy Github Actions
 ## Strona logowania
 
 Strona, na której możemy zobaczyć logo aplikacji oraz zalogować się do niej za pomocą konta Microsoft (Azure AD).
+Logo aplikacji dostarczone jest za pomocą `Azure Blob Storage`.
 
 ![](preview/login_page.jpg)
 
