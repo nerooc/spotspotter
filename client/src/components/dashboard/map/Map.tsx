@@ -9,11 +9,6 @@ import { useCoordinates } from '../../../containers';
 
 const { MapContainer } = ReactLeaflet;
 
-interface MapProps {
-	children?: React.ReactElement;
-	className?: string;
-}
-
 const MapInner = ({ position }: { position: LatLngTuple }) => {
 	const map = useMap();
 	const history = useHistory();
