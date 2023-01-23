@@ -30,12 +30,14 @@ jobs:
         run: |
           npm install
           npm run build
+          npm run test
 
       - name: Install, build and test client
         run: |
           cd ./client
           npm install
           npm run build
+          npm run test
           cd ..
 
       - name: Remove client node_modules

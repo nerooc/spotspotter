@@ -1,19 +1,16 @@
 import { LatLngTuple, Icon } from 'leaflet';
-import * as ReactLeaflet from 'react-leaflet';
-import { TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { TileLayer, Marker, Popup, useMap, useMapEvents, MapContainer } from 'react-leaflet';
 import styles from './Map.module.css';
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCoordinates } from '../../../containers';
 
-const { MapContainer } = ReactLeaflet;
-
 const MapInner = ({ position }: { position: LatLngTuple }) => {
 	const map = useMap();
 	const history = useHistory();
 	const { setCoordinates } = useCoordinates();
-	ReactLeaflet.useMapEvents({
+	useMapEvents({
 		click(event) {
 			const { lat, lng } = event.latlng;
 			setCoordinates({ lat, lng });
