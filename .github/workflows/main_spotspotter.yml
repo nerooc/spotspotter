@@ -28,19 +28,18 @@ jobs:
       - name: Install, build, and test server
         run: |
           npm install
-          npm run build --if-present
+          npm run build
 
       - name: Install, build and test client
         run: |
           cd ./client
           npm install
-          npm run build --if-present
+          npm run build
           cd ..
 
       - name: Remove client node_modules
         run: |
           rm -r ./client/node_modules/
-
 
       - name: Copy client to dist
         run: |
