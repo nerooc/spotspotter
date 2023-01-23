@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import './App.css';
 import { msalConfig } from './azure/authConfig';
-import { ProtectedRoute } from './components/auth';
 import { CoordinatesProvider } from './containers';
 import { Layout } from './layouts';
 import CreateLocationPage from './pages/create';

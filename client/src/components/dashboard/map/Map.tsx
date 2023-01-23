@@ -3,7 +3,7 @@ import * as ReactLeaflet from 'react-leaflet';
 import { TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import styles from './Map.module.css';
 import 'leaflet/dist/leaflet.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useCoordinates } from '../../../containers';
 
@@ -28,7 +28,7 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 
 	useEffect(() => {
 		map.setView(position);
-	}, [position]);
+	}, [position, map]);
 
 	return (
 		<>
@@ -48,7 +48,7 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 	);
 };
 
-export const Map = ({}: MapProps) => {
+export const Map = () => {
 	const { coordinates } = useCoordinates();
 	let { lat, lng } = coordinates;
 

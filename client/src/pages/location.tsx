@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-type LocationPage = {};
+type LocationPageProps = {};
 
 const LocationContainer = styled.div`
 	display: flex;
@@ -27,7 +27,7 @@ const ReturnButton = styled.button`
 	cursor: pointer;
 `;
 
-const LocationPage = (props: LocationPage) => {
+const LocationPage = (props: LocationPageProps) => {
 	const history = useHistory();
 	const { id } = useParams();
 	const { setCoordinates } = useCoordinates();
@@ -43,7 +43,7 @@ const LocationPage = (props: LocationPage) => {
 		}
 
 		getLocation();
-	}, []);
+	}, [id, setCoordinates]);
 
 	return (
 		<LocationContainer>

@@ -43,7 +43,7 @@ const Login = (props: LoginProps) => {
 		if (isAuthenticated) {
 			history.push(appRoutes.HOME_PAGE);
 		}
-	}, [isAuthenticated]);
+	}, [isAuthenticated, history]);
 
 	const handleLogin = () => {
 		try {

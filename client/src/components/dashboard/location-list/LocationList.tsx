@@ -4,9 +4,9 @@ import { Location } from '../../../types';
 import { LocationItem } from '../location/LocationItem';
 import styled from 'styled-components';
 
-type LocationList = {};
+type LocationListProps = {};
 
-export const LocationList = (props: LocationList) => {
+export const LocationList = (props: LocationListProps) => {
 	const [locations, setLocations] = useState<Location[]>([]);
 
 	useEffect(() => {
