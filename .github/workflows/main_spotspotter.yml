@@ -73,5 +73,5 @@ jobs:
         with:
           app-name: 'spotspotter'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CFD491D5DB5B45FDBBBC6EB44E927CAA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A8873210C4614EFCBA7742DC9FEE7D8C }}
           package: release.zip
