@@ -1,13 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 
 const CreateLocationPage = () => {
-	const router = useRouter();
+	const history = useHistory();
 
 	return (
 		<Container>
-			<ReturnButton onClick={() => router.push('/app')}>&lt; Back</ReturnButton>
+			<ReturnButton onClick={() => history.push('/app')}>&lt; Back</ReturnButton>
 			<LocationContainer>
 				<h1>Create new location</h1>
 				<LocationForm>

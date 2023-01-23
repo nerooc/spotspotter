@@ -1,5 +1,4 @@
-import type { NextPage } from 'next';
-import { LocationList } from '@/components';
+import { LocationList } from '../components';
 import styled from 'styled-components';
 
 const HomeContainer = styled.div`
@@ -10,7 +9,7 @@ const HomeContainer = styled.div`
 	color: black;
 `;
 
-const Home: NextPage = () => {
+const Home = () => {
 	return (
 		<HomeContainer>
 			<h1>All locations</h1>

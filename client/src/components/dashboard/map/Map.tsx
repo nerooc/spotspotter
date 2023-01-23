@@ -4,8 +4,8 @@ import { TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import styles from './Map.module.css';
 import 'leaflet/dist/leaflet.css';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useCoordinates } from '@/containers';
+import { useHistory } from 'react-router-dom';
+import { useCoordinates } from '../../../containers';
 
 const { MapContainer } = ReactLeaflet;
 
@@ -16,13 +16,13 @@ interface MapProps {
 
 const MapInner = ({ position }: { position: LatLngTuple }) => {
 	const map = useMap();
-	const router = useRouter();
+	const history = useHistory();
 	const { setCoordinates } = useCoordinates();
 	ReactLeaflet.useMapEvents({
 		click(event) {
 			const { lat, lng } = event.latlng;
 			setCoordinates({ lat, lng });
-			router.push(`/app/create`);
+			history.push(`/app/create`);
 		},
 	});
 
@@ -48,8 +48,7 @@ const MapInner = ({ position }: { position: LatLngTuple }) => {
 	);
 };
 
-const Map = ({}: MapProps) => {
-	const router = useRouter();
+export const Map = ({}: MapProps) => {
 	const { coordinates } = useCoordinates();
 	let { lat, lng } = coordinates;
 
@@ -70,5 +69,3 @@ const Map = ({}: MapProps) => {
 		</>
 	);
 };
-
-export default Map;

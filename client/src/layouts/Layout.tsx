@@ -1,13 +1,13 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import { AuthLayout, AppLayout } from '@/layouts';
+import { AuthLayout, AppLayout } from '../layouts';
+import { useLocation } from 'react-router-dom';
 
 interface LayoutProps {
 	children: React.ReactNode;
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
-	const { pathname } = useRouter();
+	const { pathname } = useLocation();
 	const isApp = pathname.includes('/app');
 	const isAuth = pathname.includes('/login') || pathname.includes('/register');
 

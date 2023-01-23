@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { api } from '@/api';
-import { Location } from '@/types';
+import { api } from '../../../api';
+import { Location } from '../../../types';
 import { LocationItem } from '../location/LocationItem';
 import styled from 'styled-components';
 

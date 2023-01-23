@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Location } from '@/types';
-import { useRouter } from 'next/router';
-import { appRoutes } from '@/constants';
+import { Location } from '../../../types';
+import { appRoutes } from '../../../constants';
+import { useHistory } from 'react-router-dom';
 
 type LocationProps = {
 	location: Location;
@@ -26,10 +26,10 @@ const LocationAddress = styled.div``;
 
 export const LocationItem = ({ location }: LocationProps) => {
 	const { id, title, address } = location;
-	const router = useRouter();
+	const history = useHistory();
 
 	return (
-		<LocationContainer onClick={() => router.push(`${appRoutes.LOCATION_PAGE}/${id}`)}>
+		<LocationContainer onClick={() => history.push(`${appRoutes.LOCATION_PAGE}/${id}`)}>
 			<LocationTitle>{title}</LocationTitle>
 			<LocationAddress>
 				<p>

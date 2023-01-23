@@ -1,8 +1,8 @@
-import { api } from '@/api';
-import { useCoordinates } from '@/containers';
-import { Location } from '@/types';
-import { useRouter } from 'next/router';
+import { api } from '../api';
+import { useCoordinates } from '../containers';
+import { Location } from '../types';
 import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
 type LocationPage = {};
@@ -28,8 +28,8 @@ const ReturnButton = styled.button`
 `;
 
 const LocationPage = (props: LocationPage) => {
-	const router = useRouter();
-	const { id } = router.query;
+	const history = useHistory();
+	const { id } = useParams();
 	const { setCoordinates } = useCoordinates();
 	const [location, setLocation] = useState<Location>();
 
@@ -47,7 +47,7 @@ const LocationPage = (props: LocationPage) => {
 
 	return (
 		<LocationContainer>
-			<ReturnButton onClick={() => router.push('/app')}>&lt; Back</ReturnButton>
+			<ReturnButton onClick={() => history.push('/app')}>&lt; Back</ReturnButton>
 			<h1>Location</h1>
 			{location ? (
 				<div>

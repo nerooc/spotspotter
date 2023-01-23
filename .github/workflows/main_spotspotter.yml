@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SKIP_PREFLIGHT_CHECK: true
-      # https://github.com/microsoft/ApplicationInsights-JS/issues/281
       REACT_APP_APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.REACT_APP_APPINSIGHTS_INSTRUMENTATIONKEY }}
       REACT_APP_ENVIRONMENT: production
 
@@ -45,7 +44,7 @@ jobs:
 
       - name: Copy client to dist
         run: |
-          cp -r client/.next dist
+          cp -r client/build dist
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r

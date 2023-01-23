@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Map } from '@/components';
-import { useCoordinates } from '@/containers';
+import { Map } from '../components';
 import { useMsal } from '@azure/msal-react';
 
 type AppLayoutProps = {

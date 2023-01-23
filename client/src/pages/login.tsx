@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { NextPage } from 'next';
 import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { loginRequest } from '../azure/authConfig';
-import { useRouter } from 'next/router';
-import { appRoutes } from '@/constants';
 import styled from 'styled-components';
-import Image from 'next/image';
+import { useHistory } from 'react-router-dom';
+import { appRoutes } from '../constants';
 
 type LoginProps = {};
 
@@ -36,14 +34,14 @@ const LoginButton = styled.button`
 	border: none;
 `;
 
-const Login: NextPage = (props: LoginProps) => {
+const Login = (props: LoginProps) => {
 	const { instance } = useMsal();
+	const history = useHistory();
 	const isAuthenticated = useIsAuthenticated();
-	const router = useRouter();
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			router.push(appRoutes.HOME_PAGE);
+			history.push(appRoutes.HOME_PAGE);
 		}
 	}, [isAuthenticated]);
 
@@ -58,7 +56,7 @@ const Login: NextPage = (props: LoginProps) => {
 	return (
 		<PageContainer>
 			<LoginContainer>
-				<Image src="./images/logo.svg" alt="logo" width={100} height={100} />
+				<img src="./images/logo.svg" alt="logo" />
 				{isAuthenticated ? <>LoggedIn</> : <LoginButton onClick={handleLogin}>Sign in with Microsoft AD</LoginButton>}
 			</LoginContainer>
 		</PageContainer>
