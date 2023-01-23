@@ -5,7 +5,7 @@ const baseURL = () => {
 		case 'production':
 			return 'https://spotspotter.azurewebsites.net/api/';
 		case 'staging':
-			return 'https://spotpostter-dev.azurewebsites.net/api/';
+			return 'https://spotspotter-devf730.azurewebsites.net/';
 		case 'development':
 		default:
 			return 'http://localhost:3000/api/';
