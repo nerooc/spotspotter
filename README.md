@@ -5,7 +5,7 @@ Aplikacja dla fanów fotografii motoryzacyjnej (i nie tylko), która pozwala na 
 
 ![spotspotter-logo](https://user-images.githubusercontent.com/31045802/212891761-c7e76cb5-438f-485d-b494-ed0d8bb84fd1.svg)
 
-DEMO: [https://spotspotter.azurewebsites.net/](https://spotspotter.azurewebsites.net/)
+DEMO: [https://spotspotter.azurewebsites.net/login](https://spotspotter.azurewebsites.net/login)
 
 # Diagram architektury
 
