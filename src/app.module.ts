@@ -6,10 +6,10 @@ import { LocationModule } from './location/location.module';
 
 @Module({
 	imports: [
-		// ServeStaticModule.forRoot({
-		// 	rootPath: join(__dirname, '..', 'client/build'),
-		// 	exclude: ['/api*'],
-		// }),
+		ServeStaticModule.forRoot({
+			rootPath: join(__dirname, '..', 'client/build'),
+			exclude: ['/api*'],
+		}),
 		AzureCosmosDbModule.forRoot({
 			dbName: process.env.AZURE_COSMOS_DB_NAME,
 			endpoint: process.env.AZURE_COSMOS_DB_ENDPOINT,
