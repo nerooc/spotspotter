@@ -90,13 +90,26 @@ Na rzecz projektu utworzyłem specjalną grupę zasobów o nazwie `spotspotter-r
 ![](azure/resource_group.jpg)
 
 Na wykorzystane komponenty w projekcie składa się:
-- App Service
-- Application Insights
+- App Service (w tym deployment sloty na staging i production)
 - Azure Cosmos DB
 - Storage account (Blob Storage)
+- Monitoring:
+  - Application Insights
+  - Metryki
+  - Alerty
 
 Jedyny komponent, który został umieszczony w ramach innej grupy zasobów oraz w ramach innej subskrypcji to Active Directory. Spowodowane jest to ograniczeniami nałożonymi przez organizację, w której znajduje się AGH'owe konto Azure:
 - Active Directory
+
+## App Service
+
+Po nierównej walce przeprowadzonej z frameworkiem NextJS, powróciłem do czystego Reacta. Oczywiście do hostowania aplikacji wykorzystałem usługę `App Service`. W tym celu utworzyłem dwa deployment sloty - `staging` oraz `production`. Deploy aplikacji odbywa się automatycznie za pomocą GitHub Actions. Pliki yml dotyczące pipeline'u znajdują się w folderze `.github/workflows`.
+
+Wszystkie zmiany w kodzie aplikacji są wdrażane na slot `staging`, a dopiero po jego przetestowaniu mogą po manualnym deployu trafić na `production`.
+
+Node'owa aplikacja stworzona za pomocą frameworka NestJS serwuje statyczne pliki zbudowane przez Reacta. 
+
+![](azure/app_service.jpg)
 
 ## Azure Cosmos DB
 
@@ -111,3 +124,28 @@ Do autoryzacji w aplikacji wykorzystałem usługę `Active Directory`, ze specja
 ![](azure/active_directory.jpg)
 
 
+## Monitoring
+
+W ramach monitoringu wykorzystałem kilka funkcjonalności oferowanych przez Azure:
+
+### Application Insights
+
+Application Insights jest usługą, która zbiera informacje o działaniu aplikacji. W tym przypadku zbiera ona informacje o wyjątkach, które mogą wystąpić w aplikacji. Funkcjonalność ta jest aktualnie podpięta do aplikacji i przedstawia nam dane.
+
+![](azure/application_insights.jpg)
+
+
+### Metryki
+
+W ramach metryk wykorzystałem usługę `Metrics`, która zbiera informacje o wydajności aplikacji.
+
+![](azure/metrics.jpg)
+
+
+### Alerty
+
+W ramach alertów wykorzystałem usługę `Alerts`, która pozwala na automatyczne wysyłanie maili w przypadku wystąpienia błędu w aplikacji. Stworzyłem dwie reguły:
+ - failed-server-requests - wysyła maila w przypadku wystąpienia większej liczby (> 5) nieudanych żądań do aplikacji,
+ - response-time-alert - wysyła alert w przypadku wystąpienia większej liczby żądań, które zajęły więcej niż 3 sekundy.
+
+![](azure/alert_rules.jpg)
