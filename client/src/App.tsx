@@ -1,10 +1,11 @@
 import { PublicClientApplication } from '@azure/msal-browser';
 import { MsalProvider } from '@azure/msal-react';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import './App.css';
 import { msalConfig } from './azure/authConfig';
+import { PrivateRoute } from './components';
 import { CoordinatesProvider } from './containers';
 import { Layout } from './layouts';
 import CreateLocationPage from './pages/create';
@@ -54,20 +55,21 @@ function App() {
 				<BrowserRouter>
 					<Layout>
 						<Switch>
+							<Redirect exact from="/" to="/login" />
 							<Route path="/login">
 								<Login />
 							</Route>
 
 							{/*	@ts-ignore */}
-							<Route exact path="/app">
+							<PrivateRoute exact path="/app">
 								<Home />
-							</Route>
-							<Route path="/app/location/:id">
+							</PrivateRoute>
+							<PrivateRoute path="/app/location/:id">
 								<LocationPage />
-							</Route>
-							<Route path="/app/create">
+							</PrivateRoute>
+							<PrivateRoute path="/app/create">
 								<CreateLocationPage />
-							</Route>
+							</PrivateRoute>
 						</Switch>
 					</Layout>
 				</BrowserRouter>
