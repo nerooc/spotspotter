@@ -9,6 +9,7 @@ DEMO: [https://spotspotter.azurewebsites.net/login](https://spotspotter.azureweb
 
 # Diagram architektury
 
+![image](https://user-images.githubusercontent.com/31045802/214276591-f44263ee-a3b7-44ee-a220-625ad24499fe.png)
 
 # Technologie
 
