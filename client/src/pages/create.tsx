@@ -1,3 +1,5 @@
+import { api } from '../api';
+import { useCoordinates } from '../containers';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -5,6 +7,35 @@ import { blobStorage } from '../azure';
 
 const CreateLocationPage = () => {
 	const history = useHistory();
+	const { coordinates } = useCoordinates();
+	const [formData, setFormData] = React.useState({
+		title: '',
+		description: '',
+		country: '',
+		city: '',
+		street: '',
+		number: '',
+	});
+
+	const createLocation = async () => {
+		await api.post('/location', {
+			title: formData.title,
+			description: formData.description,
+			address: {
+				country: formData.country,
+				city: formData.city,
+				street: formData.street,
+				number: formData.number,
+			},
+			location: {
+				x: coordinates.lat,
+				y: coordinates.lng,
+			},
+		});
+
+		history.push('/app');
+	};
+
 	const image = blobStorage.get('public/bmw_image.jpg');
 
 	return (
@@ -14,24 +45,62 @@ const CreateLocationPage = () => {
 				<h1>Create new location</h1>
 				<LocationForm>
 					<label htmlFor="title">Title</label>
-					<LocationInput id="title" type="text" />
+					<LocationInput
+						id="title"
+						type="text"
+						onChange={(e) => {
+							setFormData({ ...formData, title: e.target.value });
+						}}
+					/>
 
 					<label htmlFor="description">Description</label>
-					<LocationTextArea id="description" style={{ resize: 'none' }} />
+					<LocationTextArea
+						id="description"
+						style={{ resize: 'none' }}
+						onChange={(e) => {
+							setFormData({ ...formData, description: e.target.value });
+						}}
+					/>
 
 					<label htmlFor="country">Country</label>
-					<LocationInput id="country" type="text" />
+					<LocationInput
+						id="country"
+						type="text"
+						onChange={(e) => {
+							setFormData({ ...formData, country: e.target.value });
+						}}
+					/>
 
 					<label htmlFor="city">City</label>
-					<LocationInput id="city" type="text" />
+					<LocationInput
+						id="city"
+						type="text"
+						onChange={(e) => {
+							setFormData({ ...formData, city: e.target.value });
+						}}
+					/>
 
 					<label htmlFor="street">Street</label>
-					<LocationInput id="street" type="text" />
+					<LocationInput
+						id="street"
+						type="text"
+						onChange={(e) => {
+							setFormData({ ...formData, street: e.target.value });
+						}}
+					/>
 
 					<label htmlFor="number">Number</label>
-					<LocationInput id="number" type="text" />
+					<LocationInput
+						id="number"
+						type="text"
+						onChange={(e) => {
+							setFormData({ ...formData, number: e.target.value });
+						}}
+					/>
 
-					<SubmitButton type="submit">Submit</SubmitButton>
+					<SubmitButton type="submit" onClick={createLocation}>
+						Submit
+					</SubmitButton>
 				</LocationForm>
 				<img src={image} alt="bmw" width="100%" style={{ padding: 40 }} />
 			</LocationContainer>
