@@ -4,6 +4,7 @@ import { Location } from '../types';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { blobStorage } from '../azure';
 
 type LocationPageProps = {};
 
@@ -32,6 +33,7 @@ const LocationPage = (props: LocationPageProps) => {
 	const { id } = useParams();
 	const { setCoordinates } = useCoordinates();
 	const [location, setLocation] = useState<Location>();
+	const image = blobStorage.get('public/bmw_image.jpg');
 
 	useEffect(() => {
 		async function getLocation() {
@@ -65,6 +67,7 @@ const LocationPage = (props: LocationPageProps) => {
 			) : (
 				'No location'
 			)}
+			<img src={image} alt="bmw" width="100%" style={{ padding: 40 }} />
 		</LocationContainer>
 	);
 };

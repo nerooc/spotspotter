@@ -3,7 +3,6 @@ import { useCoordinates } from '../containers';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { blobStorage } from '../azure';
 
 const CreateLocationPage = () => {
 	const history = useHistory();
@@ -35,8 +34,6 @@ const CreateLocationPage = () => {
 
 		history.push('/app');
 	};
-
-	const image = blobStorage.get('public/bmw_image.jpg');
 
 	return (
 		<Container>
@@ -102,7 +99,6 @@ const CreateLocationPage = () => {
 						Submit
 					</SubmitButton>
 				</LocationForm>
-				<img src={image} alt="bmw" width="100%" style={{ padding: 40 }} />
 			</LocationContainer>
 		</Container>
 	);
