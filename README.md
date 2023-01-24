@@ -117,6 +117,15 @@ W bazie danych NoSQL Azure Cosmos DB przechowywane są dane o lokalizacjach. Sk�
 
 ![](azure/cosmos_db.jpg)
 
+
+## SQL Blob Storage
+
+Do przechowywania zdjęć wykorzystałem usługę `Blob Storage`. Na ten moment utworzyłem kontener o nazwie `public`. 
+W nim znajdują się podstawowe zdjęcia używane w aplikacji. W późniejszej fazie rozwoju prawdopodobnie dodam więcej kontenerów.
+
+![](azure/blob_storage.jpg)
+
+
 ## Autoryzacja w aplikacji
 
 Do autoryzacji w aplikacji wykorzystałem usługę `Active Directory`, ze specjalną konfiguracją przeznaczoną dla aplikacji typu SPA (np. React/Next.js).
