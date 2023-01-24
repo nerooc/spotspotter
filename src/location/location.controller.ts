@@ -63,7 +63,5 @@ export class LocationController {
 
 	@Post('/badrequest')
 	@HttpCode(500)
-	async badReqest() {
-		// pass
-	}
+	async badReqest() {}
 }

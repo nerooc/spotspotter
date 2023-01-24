@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Map } from '../components';
+import { api } from '../api';
 import { useMsal } from '@azure/msal-react';
 
 type AppLayoutProps = {
@@ -16,11 +17,25 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 		});
 	};
 
+	const sendRequest = async (url: string) => {
+		try {
+			await api.post(url);
+		} catch (e) {
+			// pass
+		}
+	};
+
 	return (
 		<Container>
 			<MenuModal>
 				{children}
-				<LogoutButton onClick={handleLogout}>Logout</LogoutButton>;
+				<ButtonContainer>
+					<FlexButtons>
+						<ForceErrorButton onClick={() => sendRequest('/test')}>Force 4xx Error</ForceErrorButton>
+						<ForceErrorButton onClick={() => sendRequest('/location/badrequest')}>Force 5xx Error</ForceErrorButton>
+					</FlexButtons>
+					<LogoutButton onClick={handleLogout}>Logout</LogoutButton>;
+				</ButtonContainer>
 			</MenuModal>
 			<Map />
 		</Container>
@@ -49,11 +64,38 @@ const MenuModal = styled.div`
 	padding: 20px;
 `;
 
-const LogoutButton = styled.button`
+const ButtonContainer = styled.div`
+	display: flex;
+	flex-direction: column;
 	position: absolute;
-	bottom: 20px;
-	height: 40px;
+	bottom: -10px;
+	gap: 10px;
 	width: 90%;
+`;
+
+const FlexButtons = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+`;
+
+const ForceErrorButton = styled.button`
+	height: 40px;
+	width: 45%;
+	background-color: dark-gray;
+	color: white;
+	padding: 10px 20px;
+	cursor: pointer;
+	border: none;
+	&:hover {
+		opacity: 0.8;
+	}
+`;
+
+const LogoutButton = styled.button`
+	height: 40px;
+	width: 100%;
 	background-color: #ab0537;
 	color: white;
 	padding: 10px 20px;
